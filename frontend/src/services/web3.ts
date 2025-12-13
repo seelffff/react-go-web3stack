@@ -11,3 +11,12 @@ export default function validationAddress(address: string): boolean{
     if(!isAddress(address)) return false; 
     return true
 }
+
+export const fetchEthBalance = async(address: `0x${string}`) : Promise<any> => { 
+    const balance = await client.getBalance({address});
+    return balance; // in wei
+}
+
+export const fetchTransactionCount = async(address : `0x${string}`): Promise<any> => { 
+    return await client.getTransactionCount({address});
+}
