@@ -2,9 +2,9 @@ import {useState,useEffect} from 'react'
 import {isAddress} from 'viem'
 
 interface AddressInputProps { 
-    onAddressSubmit: (address: `0x${string}`) => void; 
+    onAddressSubmit: (address: `0x${string}`) => any; 
 }
-const AddressInput = (): any =>{ 
+const AddressInput = ({ onAddressSubmit }: AddressInputProps): any =>{ 
     const [address, setAddress] = useState(''); 
     const [valid, setValid] = useState<boolean | null>(null);
     const [error,setError] = useState<string>('')
@@ -28,8 +28,10 @@ const AddressInput = (): any =>{
         setAddress(e.target.value)
     }
   
-    const handleApi = ():any => { 
-
+    const handleSubmit = ():any => { 
+        if (valid && isAddress(address)) {
+            onAddressSubmit(address as `0x${string}`);
+        }
     }
 
     return (//доработать 
@@ -40,7 +42,7 @@ const AddressInput = (): any =>{
             placeholder='Введите адрес'
             onChange ={ handleInput}
         />
-        <button onClick = {handleApi}>Проверка адреса</button>
+        <button onClick = {handleSubmit}>Проверка адреса</button>
         {valid === false && <div style={{color: 'red'}}>Неверный адрес</div>}
         {valid === true && <div style={{color: 'green'}}>Адрес валиден</div>}
     </div>
