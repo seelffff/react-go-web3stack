@@ -6,7 +6,7 @@ interface DashboardProps {
 }
 
 
-const Dashboard = (address : `0x${string}` ):any => { 
+const Dashboard = ({address}: DashboardProps):any => { 
     const {    balance, 
         nfts, 
         transactionCount, 
