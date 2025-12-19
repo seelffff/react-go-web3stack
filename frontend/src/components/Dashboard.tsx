@@ -7,6 +7,7 @@ interface DashboardProps {
 
 
 const Dashboard = ({address}: DashboardProps):any => { 
+    console.log(`Дашборд рендерится с адресом ${address}`);
     const {    balance, 
         nfts, 
         transactionCount, 
@@ -28,7 +29,10 @@ const Dashboard = ({address}: DashboardProps):any => {
         <>
             <div style ={{padding: '20px'}}>
              <h2>Dashboard for {address.slice(0,10)}...</h2>
-
+            <div style = {{padding: '20px'}}>
+                <h3>Balance to Eth</h3>
+                <p>{balance ? weiToEth(balance) : '0'} ETH</p>
+            </div>
             <div style={{marginBottom: '20px'}}>
              <h3>Количесто транзакций...</h3>
              <p>{transactionCount || '0'}</p>

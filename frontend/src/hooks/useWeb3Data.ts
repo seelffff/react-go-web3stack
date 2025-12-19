@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchNFT, fetchTransaction} from '../services/api.ts'
-import { fetchEthBalance } from "../services/web3.ts";
+import { fetchEthBalance, fetchTransactionCount } from "../services/web3.ts";
 
 interface UseWeb3DataProps { 
     address: `0x${string}`, 
@@ -22,7 +22,7 @@ export const useWeb3Data = ({address, enabled}: UseWeb3DataProps) => {
     })
     const txCountQuery = useQuery({
         queryKey: ['txCount', address],
-        queryFn: () => fetchTransaction(address),
+        queryFn: () => fetchTransactionCount(address),
         enabled
       });
 
